@@ -1,90 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import './Basket.css';
 import HeroSection from '../../../components/HeroSection/HeroSection';
+import { useContext } from 'react';
+import MainContext from '../../../context/Context';
+import { Helmet } from 'react-helmet-async';
 
 const Basket = () => {
-  const [basket, setBasket] = useState(
-    localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
-  );
 
-  useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify(basket));
-  }, [basket]);
+  const {addToBasket,deleteFromBasket,basket}=useContext(MainContext)
+return (
+  <div className="container my-5 ">
+  <Helmet>
+    <title>
+      Basket
+    </title>
+  </Helmet>
+  <table class="table my-5 ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Count</th>
+        <th scope="col">Price</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Add</th>
+      </tr>
+    </thead>
+    <tbody>
+      {basket.map((item, index) => (
+        <tr key={index}>
+          <th scope="row">{index + 1}</th>
+          <td>
+            <img src={item.image} alt="" width="100px" height="100px" />
+          </td>
+          <td>{item.title}</td>
+          <td>{item.count}</td>
 
-  const handleDelete = (id) => {
-    let updatedBasket = basket.map((item) => {
-      if (item.id === id) {
-        if (item.count > 1) {
-          
-          item.count--;
-          item.totalPrice = item.price * item.count;
-        } else {
-          
-          return null;
-        }
-      }
-      return item;
-    });
+          <td>{item.totalPrice}$</td>
+          <td>
+            <button
+              onClick={() => {
+                deleteFromBasket(item._id);
+              }}
+              className="btn btn-danger "
+            >
+              delete
+            </button>
+          </td>
+          <td>
+            <button
+              onClick={() => {
+                addToBasket(item._id);
+              }}
+              className="btn btn-warning "
+            >
+              Add
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+)
+}
 
-    updatedBasket = updatedBasket.filter((item) => item !== null);
-    setBasket(updatedBasket);
-  };
-
-  const handleAdd = (id) => {
-    let updatedBasket = basket.map((item) => {
-      if (item.id === id) {
-     
-        item.count++;
-        item.totalPrice = item.price * item.count;
-      }
-      return item;
-    });
-
-    setBasket(updatedBasket);
-  };
-
-  return (
-    <>
-    <HeroSection/>
-     <div className="container">
-      <table className="table mt-5 table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Image</th>
-            <th scope="col">Title</th>
-            <th scope="col">Price</th>
-            <th scope="col">Count</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Add</th>
-          </tr>
-        </thead>
-        <tbody>
-          {basket.map((item, index) => (
-            <tr key={index}>
-              <td>
-                <img width={"60px"} height={"60px"} src={item.image} alt="" />
-              </td>
-              <td>{item.title}</td>
-              <td>{item.price}</td>
-              <td>{item.count}</td>
-              <td>
-                <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>
-                  Delete
-                </button>
-              </td>
-              <td>
-                <button className="btn btn-primary" onClick={() => handleAdd(item.id)}>
-                  Add
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-    </>
-   
-  );
-};
-
-export default Basket;
+export default Basket

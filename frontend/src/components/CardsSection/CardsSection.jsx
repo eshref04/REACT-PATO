@@ -10,40 +10,6 @@ const CardsSection = () => {
     const [search,setSearch]=useState("")
     const [sort,setSort]=useState(null)
 
-    const [basket, setBasket] = useState(
-        localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
-      );
-    
-      useEffect(() => {
-        localStorage.setItem('basket', JSON.stringify(basket));
-      }, [basket]);
-    
-      const addBasket = (id) => {
-        const findBasketItem = basket.find((e) => e.id === id);
-        if (findBasketItem) {
-         
-          const updatedBasket = basket.map((item) =>
-            item.id === id
-              ? {
-                  ...item,
-                  count: item.count + 1,
-                  totalPrice: parseFloat(item.totalPrice) + parseFloat(item.price),
-                }
-              : item
-          );
-          setBasket(updatedBasket);
-        } else {
-         
-          const newBasketItem = {
-            ...item,
-            count: 1,
-            totalPrice: parseFloat(item.price),
-          };
-          setBasket([...basket, newBasketItem]);
-        }
-      };
-    
-	
 	return (
 		<section className="cards__section">
 			<div style={{padding:"100px 0px"}} className="container">
@@ -84,11 +50,11 @@ const CardsSection = () => {
 								<h5 class="card-title">{item.title}</h5>
 								<p class="card-text">{item.price}$</p>
                                 <div className="d-flex gap-3">
-                                <Link onClick={() => addBasket(item.id)}>
+                                <Link >
                                 
-									<button className="btn btn-danger">Add to Cart</button>
+									<button onClick={() => addBasket(item._id)} className="btn btn-danger">Add to Cart</button>
 								</Link>
-                                <Link to={`/detail/${item._id}`}>
+                             <Link to={`/detail/${item._id}`}>
 									<button className="btn btn-primary">Detail</button>
 								</Link>
                                 </div>

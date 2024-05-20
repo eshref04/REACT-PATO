@@ -1,0 +1,58 @@
+.hero__section{
+    position: relative;
+  
+}
+
+.carousel__text{
+    position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+     color: white;
+} 
+
+.carousel-item{
+    position: relative;
+}
+
+.carousel-item img{
+    height: 100vh;
+}
+    
+
+.carousel__text p{
+    font-size: 60px;
+}
+
+.carousel__text h2{
+    font-size: 90px;
+    
+}
+
+.carousel__text a{
+    text-decoration: none;
+    color: white !important;
+}
+
+.carousel__text  button{
+    background: white;
+    border-radius: 10px;
+    width: 135px;
+    height: 40px;
+    padding: 14px;
+    border: none;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.1;
+    color: #ec1d25;
+    margin-top: 22px;
+    transition: 0.3s linear;
+}
+
+.carousel__text  button:hover{
+    cursor: pointer;
+    background-color: #ec1d25;
+    color: white;
+
+}

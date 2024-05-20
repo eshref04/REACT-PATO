@@ -1,0 +1,33 @@
+.story__section__left span{
+    font-style: italic;
+    color: #ec1d25;
+    font-size: 30px;
+}
+
+.story__section__left h3{
+    font-size: 50px;
+    color: #222222;
+    font-weight: 700;
+    
+    line-height: 1.2;
+    letter-spacing: 6px;
+}
+
+.story__section__left p{
+    margin-top: 28px;
+    color: #666666;
+}
+
+.story__section__left a{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: #666666;
+    font-size: 12px;
+    transition: 0.3s linear;
+}
+
+.story__section__left a:hover{
+    color: #ec1d25;
+}

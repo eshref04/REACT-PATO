@@ -1,0 +1,7 @@
+form{
+    background-color: rgb(75, 75, 224);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

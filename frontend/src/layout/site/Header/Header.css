@@ -1,0 +1,29 @@
+header .container{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    color: white;
+}
+
+header .container li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+} 
+
+header .container li a{
+    transition: 0.3s linear;
+}
+
+header .container li:hover a{
+    color: #ec1d25;
+}
+
+.header__right li:hover{
+    color: #ec1d25;
+}
+
+.header__right li{
+    transition: 0.3s linear;
+    cursor: pointer;
+}
